@@ -1,0 +1,30 @@
+function Dijkstra(Graph, source):
+
+   create vertex set Q
+
+   for each vertex v in Graph:
+       dist[v] ← INFINITY
+       prev[v] ← UNDEFINED
+       add v to Q
+   dist[source] ← 0
+
+   while Q is not empty:
+       u ← vertex in Q with min dist[u]
+
+       remove u from Q
+
+       for each neighbor v of u:           // only v that are still in Q
+           alt ← dist[u] + length(u, v)
+           if alt < dist[v]:
+               dist[v] ← alt
+               prev[v] ← u
+
+   return dist[], prev[]
+
+
+   S ← empty sequence
+   u ← target
+   if prev[u] is defined or u = source:          // Do something only if the vertex is reachable
+       while u is defined:                       // Construct the shortest path with a stack S
+           insert u at the beginning of S        // Push the vertex onto the stack
+           u ← prev[u]                           // Traverse from target to source
