@@ -44,11 +44,9 @@ function findShortestPath(graph: Graph, source: string, endNode: string): string
         queue.add(key);
     });
 
-    let count = 0;
     dist.set(source, 0);
 
     while (queue.size > 0) {
-        count++;
         let u = shortest(dist, queue);
         queue.delete(u);
         let neighbors = graph.get(u);
