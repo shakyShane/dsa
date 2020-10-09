@@ -33,7 +33,7 @@
  */
 type Graph = Map<string, Record<string, number>>;
 
-function findShortestPath(graph: Graph, source: string, endNode: string): string[] {
+function calculate(graph: Graph, source: string): Map<string, string|undefined> {
     let queue = new Set<string>();
     let dist = new Map<string, number>();
     let prev = new Map();
@@ -59,10 +59,13 @@ function findShortestPath(graph: Graph, source: string, endNode: string): string
             }
         }
     }
+    return prev;
+}
 
+function createPath(prev: Map<string, string|undefined>, start: string, end: string) {
     let s = [];
-    let u = endNode;
-    if (prev.get(u) || u === source) {
+    let u = end;
+    if (prev.get(u) || u === start) {
         while (u !== undefined) {
             s.push(u);
             u = prev.get(u);
@@ -103,6 +106,6 @@ const graph = new Map([
 console.log(graph);
 
 console.time("ss")
-console.log(findShortestPath(graph, 'C', 'E'));
+console.log(createPath(calculate(graph, 'C'), 'C', 'E'));
 console.timeEnd("ss");
 
