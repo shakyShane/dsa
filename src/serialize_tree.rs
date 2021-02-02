@@ -69,13 +69,6 @@ impl Tree {
 
 #[test]
 fn test_deserialize() {
-    let root = Node::new("1",
-        Some(Box::new(Node::new("2", None, None))),
-        Some(Box::new(Node::new("3",
-            Some(Box::new(Node::new("4", None, None))),
-            Some(Box::new(Node::new("5", None, None))),
-        )))
-    );
     let n = Tree::from_str("1 2 # # 3 4 # # 5 # #").deserialize();
     assert_eq!(n.unwrap().left, Some(Box::new(Node::new("2", None,None))));
 }

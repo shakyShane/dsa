@@ -1,6 +1,7 @@
 mod binary_search;
 mod unival_subtrees;
 mod serialize_tree;
+mod quick_sort_1;
 
 fn main() {
     println!("run `cargo test` to verify");
