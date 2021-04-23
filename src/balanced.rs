@@ -1,20 +1,13 @@
 // O(n)
 fn balanced(input: &str) -> bool {
-    let mut stack: Vec<Char> = vec![];
-    enum Char {
-        Paren,
-        Square,
-        Brace,
-    }
+    let mut stack: Vec<char> = vec![];
     for c in input.chars() {
         match c {
-            '(' => stack.push(Char::Paren),
-            '[' => stack.push(Char::Square),
-            '{' => stack.push(Char::Brace),
-            ')' | ']' | '}' => match (c, stack.pop()) {
-                (')', Some(Char::Paren)) => {}
-                (']', Some(Char::Square)) => {}
-                ('}', Some(Char::Brace)) => {}
+            '(' | '[' | '{' => stack.push(c),
+            ')' | ']' | '}' => match (stack.pop(), c) {
+                (Some('('), ')') => {}
+                (Some('['), ']') => {}
+                (Some('{'), '}') => {}
                 (_, _) => return false,
             },
             _ => {}
