@@ -7,7 +7,7 @@ fn balanced(input: &str) -> bool {
             '[' => stack.push(']'),
             '{' => stack.push('}'),
             ')' | ']' | '}' if stack.pop() != Some(c) => return false,
-            _ => {}
+            _ => {} // do nothing for every other char
         }
     }
     stack.len() == 0
