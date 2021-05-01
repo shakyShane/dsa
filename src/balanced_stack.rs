@@ -3,13 +3,10 @@ fn balanced(input: &str) -> bool {
     let mut stack: Vec<char> = vec![];
     for c in input.chars() {
         match c {
-            '(' | '[' | '{' => stack.push(c),
-            ')' | ']' | '}' => match (stack.pop(), c) {
-                (Some('('), ')') => {}
-                (Some('['), ']') => {}
-                (Some('{'), '}') => {}
-                (_, _) => return false,
-            },
+            '(' => stack.push(')'),
+            '[' => stack.push(']'),
+            '{' => stack.push('}'),
+            ')' | ']' | '}' if stack.pop() != Some(c) => return false,
             _ => {}
         }
     }
@@ -22,6 +19,7 @@ fn test_balanced() {
     assert_eq!(balanced("["), false);
     assert_eq!(balanced("(())"), true);
     assert_eq!(balanced("((()"), false);
+    assert_eq!(balanced("()()[]{}"), true);
     assert_eq!(balanced(")(())"), false);
     assert_eq!(balanced("))))"), false);
     assert_eq!(balanced("(()))("), false);
