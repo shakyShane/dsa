@@ -11,22 +11,20 @@
 /// l=0, h=2, m=2, curr = '3'
 ///
 pub fn binary_search(k: i32, items: &[i32]) -> Option<i32> {
-    // println!("k={}, items={:?}", k, items);
     let mut low: i32 = 0;
     let mut high: i32 = items.len() as i32 - 1;
 
     while low <= high {
-        let m = (((high + low) / 2) as f64).floor() as i32;
-        if let Some(curr) = items.get(m as usize) {
-            // println!("l={}, m={}, h={}, curr={}", low, m, high, curr);
-            if *curr == k {
-                return Some(m);
+        let middle = (((high + low) / 2) as f64).floor() as i32;
+        if let Some(current) = items.get(middle as usize) {
+            if *current == k {
+                return Some(middle);
             }
-            if *curr > k {
-                high = m - 1
+            if *current > k {
+                high = middle - 1
             }
-            if *curr < k {
-                low = m + 1
+            if *current < k {
+                low = middle + 1
             }
         }
     }
