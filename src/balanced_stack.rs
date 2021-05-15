@@ -10,7 +10,7 @@ fn balanced(input: &str) -> bool {
             _ => {} // do nothing for every other char
         }
     }
-    stack.len() == 0
+    !stack.is_empty()
 }
 
 #[test]

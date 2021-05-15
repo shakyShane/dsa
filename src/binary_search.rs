@@ -10,18 +10,24 @@
 /// l=0, h=4, m=2, curr = '3'
 /// l=0, h=2, m=2, curr = '3'
 ///
-pub fn binary_search(k: i32, items: &Vec<i32>) -> Option<i32> {
-    println!("k={}, items={:?}", k, items);
-    let mut l: i32 = 0;
-    let mut h: i32 = items.len() as i32 - 1;
+pub fn binary_search(k: i32, items: &[i32]) -> Option<i32> {
+    // println!("k={}, items={:?}", k, items);
+    let mut low: i32 = 0;
+    let mut high: i32 = items.len() as i32 - 1;
 
-    while l <= h {
-        let m = (((h + l) / 2) as f64).floor() as i32;
+    while low <= high {
+        let m = (((high + low) / 2) as f64).floor() as i32;
         if let Some(curr) = items.get(m as usize) {
-            println!("l={}, m={}, h={}, curr={}", l, m, h, curr);
-            if *curr == k { return Some(m) }
-            if *curr > k { h = m - 1 }
-            if *curr < k { l = m + 1 }
+            // println!("l={}, m={}, h={}, curr={}", low, m, high, curr);
+            if *curr == k {
+                return Some(m);
+            }
+            if *curr > k {
+                high = m - 1
+            }
+            if *curr < k {
+                low = m + 1
+            }
         }
     }
 
