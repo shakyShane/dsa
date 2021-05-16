@@ -10,17 +10,20 @@
 /// l=0, h=4, m=2, curr = '3'
 /// l=0, h=2, m=2, curr = '3'
 ///
-pub fn binary_search(k: i32, items: &[i32]) -> Option<i32> {
-    let mut low: i32 = 0;
-    let mut high: i32 = items.len() as i32 - 1;
+pub fn binary_search(k: i32, items: &[i32]) -> Option<usize> {
+    if items.is_empty() { return None; }
+
+    let mut low: usize = 0;
+    let mut high: usize = items.len() - 1;
 
     while low <= high {
-        let middle = (((high + low) / 2) as f64).floor() as i32;
-        if let Some(current) = items.get(middle as usize) {
+        let middle = (high + low) / 2;
+        if let Some(current) = items.get(middle) {
             if *current == k {
                 return Some(middle);
             }
             if *current > k {
+                if middle == 0 { return None; }
                 high = middle - 1
             }
             if *current < k {
@@ -28,7 +31,6 @@ pub fn binary_search(k: i32, items: &[i32]) -> Option<i32> {
             }
         }
     }
-
     None
 }
 
@@ -46,4 +48,6 @@ fn test_binary_search() {
 
     let items = vec![2, 4, 6, 80, 90, 120, 180, 900, 2000, 4000, 5000, 60000];
     assert_eq!(None, binary_search(1, &items));
+
+    assert_eq!(None, binary_search(1, &[]));
 }
