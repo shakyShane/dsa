@@ -40,8 +40,8 @@ function canSumMemo(target, numbers, memo = {}) {
     if (target === 0) return true;
     for (let num of numbers) {
         const remainder = target - num;
-        memo[target] = canSumMemo(remainder, numbers, memo);
-        if (memo[target]) {
+        if (canSumMemo(remainder, numbers, memo) === true) {
+            memo[target] = true;
             return true;
         }
     }
