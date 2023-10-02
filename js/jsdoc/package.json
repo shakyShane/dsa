@@ -1,0 +1,18 @@
+{
+  "name": "jsdoc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/index.js",
+  "scripts": {
+    "jsdoc-js": "bun run ./js/index.js",
+    "jsdoc-ts": "bun run ./ts/index.ts",
+    "tsc": "tsc",
+    "tsc-watch": "tsc --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "zod": "^3.22.2"
+  }
+}

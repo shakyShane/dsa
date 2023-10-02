@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "dependencies": {
+    "bun": "^1.0.2",
+    "typescript": "^4.5.5"
+  },
+  "workspaces": [
+    "./js/jsdoc"
+  ]
+}
