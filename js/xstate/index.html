@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>X-state</title>
+    <link rel="stylesheet" href="dist/index.css" />
+  </head>
+  <body>
+    <label>
+      Select a room
+      <select name="room" id="room">
+        <option disabled selected>Select a room</option>
+        <option value="a">Room a</option>
+        <option value="b">Room b</option>
+        <option value="c">Room c</option>
+      </select>
+      <button type="button" id="disconnect" disabled>Disconnect</button>
+      <button type="button" id="reconnect" disabled>Reconnect</button>
+    </label>
+    <div class="output">
+      <pre><code id="debug"></code></pre>
+      <pre><code id="events"></code></pre>
+    </div>
+    <script src="dist/index.js"></script>
+  </body>
+</html>
