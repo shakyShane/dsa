@@ -25,7 +25,6 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           comment-id: ${{ steps.fc.outputs.comment-id }}
           body: |
-            Hello World!
-            
+            Hello World V2
             This comment was last updated at: ${{ github.event.pull_request.updated_at }}
           edit-mode: replace

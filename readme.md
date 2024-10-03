@@ -8,4 +8,3 @@ Data Structures and Algorithms
     - [Rust](https://github.com/shakyshane/dsa/blob/master/src/unival_subtrees.rs)
     - [JavaScript (fast)](https://github.com/shakyshane/dsa/blob/master/js/unival_subtrees_fast.js)
     - [JavaScript (slow)](https://github.com/shakyshane/dsa/blob/master/js/unival_subtrees_slow.js)
-
