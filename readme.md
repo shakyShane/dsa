@@ -9,4 +9,3 @@ Data Structures and Algorithms
     - [JavaScript (fast)](https://github.com/shakyshane/dsa/blob/master/js/unival_subtrees_fast.js)
     - [JavaScript (slow)](https://github.com/shakyshane/dsa/blob/master/js/unival_subtrees_slow.js)
 
-ABC
