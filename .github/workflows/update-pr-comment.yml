@@ -18,6 +18,7 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           comment-author: 'github-actions[bot]'
           body-includes: 'Hello World'
+          direction: last
 
       - name: Create or Update comment
         uses: peter-evans/create-or-update-comment@v2
@@ -25,6 +26,6 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           comment-id: ${{ steps.fc.outputs.comment-id }}
           body: |
-            Hello World V2
+            Hello World V3
             This comment was last updated at: ${{ github.event.pull_request.updated_at }}
           edit-mode: replace
