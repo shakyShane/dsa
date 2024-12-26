@@ -1,0 +1,47 @@
+name: Enforce Bot-Created Releases
+
+on:
+  release:
+    types:
+      - created  # Trigger when any release is created
+
+jobs:
+  validate-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check release author
+        id: check-author
+        run: |
+          AUTHOR=${{ github.event.release.author.login }}
+          echo "Release author: $AUTHOR"
+
+          # Check if the author is a bot
+          if [[ "$AUTHOR" == "github-actions[bot]" ]]; then
+            echo "Release was created by a bot. Allowing it to proceed."
+            echo "is_bot=true" >> $GITHUB_ENV
+          else
+            echo "Release was manually triggered by $AUTHOR."
+            echo "is_bot=false" >> $GITHUB_ENV
+
+      - name: Delete the release and tag
+        if: env.is_bot != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Deleting release: ${{ github.event.release.id }}"
+          RELEASE_ID=${{ github.event.release.id }}
+          gh api repos/:owner/:repo/releases/$RELEASE_ID -X DELETE
+
+          echo "Deleting tag: ${{ github.event.release.tag_name }}"
+          git tag -d ${{ github.event.release.tag_name }}
+          git push origin --delete ${{ github.event.release.tag_name }}
+
+      - name: Fail the action with a descriptive message
+        if: env.is_bot != 'true'
+        run: |
+          echo "Error: Manually triggered releases are not allowed."
+          exit 1
+
+      - name: Confirm release is valid
+        if: env.is_bot == 'true'
+        run: echo "Release was created by a bot. No action needed."
