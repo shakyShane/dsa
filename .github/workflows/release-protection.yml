@@ -1,4 +1,4 @@
-name: Enforce Bot-Created Releases only
+name: Delete manually created release
 
 on:
   release:
@@ -27,9 +27,8 @@ jobs:
           echo "Deleting tag: ${{ github.event.release.tag_name }}"
           git tag -d ${{ github.event.release.tag_name }}
           git push origin --delete ${{ github.event.release.tag_name }}
-          
 
-      - name: Fail the action with a descriptive message
+      - name: Why was this release deleted?
         run: |
           echo "Error: Manually triggered releases are not allowed."
-          exit 1
+          exit 0
