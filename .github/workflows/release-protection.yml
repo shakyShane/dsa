@@ -30,5 +30,9 @@ jobs:
 
       - name: Why was this release deleted?
         run: |
-          echo "Error: Manually triggered releases are not allowed."
-          exit 0
+          cat <<EOF
+          Our release process commits assets to the 'releases' branch - and that has to occur before the 
+          git tag is created. Because of that fact, we need to prevent anyone from creating a release in the GitHub UI.
+          
+          Instead, use the release workflow.
+          EOF
