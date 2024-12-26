@@ -11,6 +11,13 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v3
+
+      # 2. Delete the release associated with the created tag
+      - name: Delete Release
+        run: |
+          echo "Deleting release: ${{ github.event.release.tag_name }}"
+          gh release delete ${{ github.event.release.tag_name }} --yes
+
       - name: Delete the release and tag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -18,6 +25,7 @@ jobs:
           echo "Deleting tag: ${{ github.event.release.tag_name }}"
           git tag -d ${{ github.event.release.tag_name }}
           git push origin --delete ${{ github.event.release.tag_name }}
+          
 
       - name: Fail the action with a descriptive message
         run: |
