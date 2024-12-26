@@ -22,6 +22,7 @@ jobs:
           else
             echo "Release was manually triggered by $AUTHOR."
             echo "is_bot=false" >> $GITHUB_ENV
+          fi
 
       - name: Delete the release and tag
         if: env.is_bot != 'true'
