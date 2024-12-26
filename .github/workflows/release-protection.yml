@@ -14,6 +14,8 @@ jobs:
 
       # 2. Delete the release associated with the created tag
       - name: Delete Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "Deleting release: ${{ github.event.release.tag_name }}"
           gh release delete ${{ github.event.release.tag_name }} --yes
