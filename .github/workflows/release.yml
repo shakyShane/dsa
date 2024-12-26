@@ -19,8 +19,11 @@ jobs:
           git tag ${{ inputs.version }}
           git push origin ${{ inputs.version }}
 
-      - name: Create GitHub release
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh release create ${{ inputs.version }} --title "Release ${{ inputs.version }}" --notes "Automatically created by workflow."
+        with:
+          draft: false
+          prerelease: false
+          tag_name: ${{ github.event.inputs.version }}
