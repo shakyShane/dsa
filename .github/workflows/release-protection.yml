@@ -29,10 +29,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "Deleting release: ${{ github.event.release.id }}"
-          RELEASE_ID=${{ github.event.release.id }}
-          gh api repos/:owner/:repo/releases/$RELEASE_ID -X DELETE
-
           echo "Deleting tag: ${{ github.event.release.tag_name }}"
           git tag -d ${{ github.event.release.tag_name }}
           git push origin --delete ${{ github.event.release.tag_name }}
